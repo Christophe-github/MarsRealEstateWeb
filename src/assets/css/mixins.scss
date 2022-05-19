@@ -1,0 +1,31 @@
+@mixin apply-above-background($color) {
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+
+        background-color: $color;
+        z-index: -1;
+    }
+}
+
+@mixin ifSmallerThan($width) {
+    @media  (max-width: $width) {
+     @content;
+   }
+ }
+
+ @mixin ifBiggerThan($width) {
+    @media  (min-width: $width) {
+     @content;
+   }
+ }
+
+ @mixin ifBetween($width1,$width2) {
+    @media  (min-width: $width1) and (max-width: $width2){
+     @content;
+   }
+ }

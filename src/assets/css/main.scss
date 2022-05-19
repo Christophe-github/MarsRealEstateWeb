@@ -1,0 +1,162 @@
+@use "@/assets/css/widgets.scss";
+
+@use "@/assets/css/themes";
+
+html {
+    overflow-y: scroll;
+
+    @media screen and (min-width: 2500px) {
+        font-size: 1.2rem;
+    }
+}
+
+body {
+    margin: 0;
+    background-color: var(--background-color);
+    /* font-family: Avenir, Helvetica, Arial, sans-serif; */
+    font-family: Raleway;
+    font-display: swap;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+    margin: 0;
+}
+
+
+h1 {
+    font-size: 2.4rem;
+    color: var(--text-color-primary);
+}
+
+
+h2 {
+    font-size: 1.8rem;
+    color: var(--text-color-primary);
+}
+
+h3 {
+    font-size: 1.6rem;
+    color: var(--text-color-primary);
+}
+
+h4 {
+    font-size: 1.2rem;
+    color: var(--text-color-primary);
+}
+
+a {
+    text-decoration: none;
+    color: currentColor;
+}
+
+a:focus {
+    /* outline: none; */
+    // text-decoration: underline;
+}
+
+button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+fieldset {
+    padding: 0;
+    border: none;
+}
+
+fieldset > legend {
+    display: block;
+    margin-block-end: 0.5rem;
+    font-size: 1.2rem;
+}
+
+select {
+    padding: 0.7rem;
+    //Padding at the end must be bigger because of the down arrow icon
+    padding-inline-end: 1.4rem;
+    border-radius: 2px;
+    font-size: 1rem;
+    font-family: Raleway;
+    border: none;
+    color: var(--text-color-primary);
+    background-color: var(--color-surface);
+    outline: solid 1px var(--color-separator);
+
+    appearance: none;
+}
+
+
+select > option {
+    font-family: sans-serif;
+}
+
+select:focus {
+    /* border:solid 1.5px var(--color-primary); */
+    outline: solid 2px var(--color-primary);
+}
+
+input {
+    padding: 0.8rem 1rem;
+    font-family: Raleway;
+    font-weight: 600;
+    font-size: 1.1rem;
+    outline: solid 1px var(--color-separator);
+    border: none;
+    border-radius: 5px;
+    color: var(--text-color-primary);
+    background-color: transparent;
+    caret-color: var(--text-color-primary);
+}
+
+input:focus {
+    *border: solid 1px transparent;
+    outline: solid 2px var(--color-primary);
+}
+
+input:invalid:not(:focus):not(:placeholder-shown) {
+    color: var(--color-error);
+    *border: solid 1px var(--color-error);
+    outline: solid 2px var(--color-error);
+}
+
+input::placeholder {
+    color: var(--color-disabled);
+    opacity: 0.9;
+    text-overflow: ellipsis;
+    font-family: Raleway;
+    font-weight: 500;
+}
+
+input:disabled {
+    background-color: var(--color-on-background);
+    cursor: not-allowed;
+}
+
+input[type="text"] {
+    padding: 0.3rem;
+    border-radius: 5px;
+    border: solid 1px var(--color-disabled);
+}
+input[type="texta"]:focus {
+    outline: solid 2px var(--color-primary);
+    border: solid 1px transparent;
+}

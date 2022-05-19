@@ -1,0 +1,165 @@
+/** Class for the round loading indicator (spinner)
+
+    When using the spinner class, its color can be 
+    changed with the 'color' property.
+    
+    For both spinner and spinner-colored, the width of the 
+    arc can be changed by setting a font-size **/
+
+@mixin spinner {
+    border: 0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner 0.8s linear infinite;
+}
+
+.spinner {
+    @include spinner;
+}
+
+.spinner-colored {
+    @include spinner;
+    color: var(--color-primary);
+}
+
+@keyframes spinner {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/** Class which adds a ripple effect when an element is clicked (:active) **/
+
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50px;
+    background-color: var(--color-highlight);
+    visibility: hidden;
+    z-index: 2;
+}
+
+.ripple:not(:active)::after {
+    animation: ripple 0.4s cubic-bezier(0, 0, 0.2, 1);
+    transition: visibility 0.4s step-end;
+}
+
+.ripple:active::after {
+    visibility: visible;
+}
+
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.5;
+    }
+    100% {
+        width: 200%;
+        height: 200%;
+        opacity: 0;
+    }
+}
+
+.mars-button {
+    font-size: 1rem;
+    min-width: 10rem;
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    border: none;
+    padding: 0.8rem;
+    text-transform: uppercase;
+    font-family: Raleway;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+.mars-button-outlined {
+    // background-color: var(--color-primary);
+    color: var(--color-primary);
+    border: solid 1.5px var(--color-primary);
+    padding: 12px;
+    text-transform: uppercase;
+    font-family: Raleway;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+.mars-button:disabled,
+.mars-button-outlined:disabled {
+    cursor: default;
+    opacity: 0.7;
+}
+
+// .mars-button:not(:disabled):hover::before {
+//     content: "";
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     bottom: 0;
+//     right: 0;
+//     background-color: var(--color-on-primary);
+//     opacity: 0.15;
+//     z-index: 1;
+// }
+
+.mars-button-text {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: none;
+    padding: 6px;
+    /* min-width: 180px; */
+    max-width: 250px;
+    font-family: Raleway;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+.list-tile {
+    display: flex;
+    align-items: center;
+}
+
+.list-tile :first-child {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.list-tile :nth-child(2) {
+    flex: 1;
+    margin-left: 1.2rem;
+}
+
+.aspect-ratio-wrapper {
+    position: relative;
+    //aspect-ratio is only supported since 2021 so we use this old technique
+    padding-bottom: 56.25%;
+    flex-grow: 1;
+}
+
+.aspect-ratio-wrapper > * {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}

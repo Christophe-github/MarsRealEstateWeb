@@ -1,0 +1,75 @@
+
+/**** Light Theme ****/
+
+@mixin lightTheme {
+    --background-color: #fafafa;
+    --color-on-background: #cccccc77;
+
+    --color-surface: #fafafa;
+    --color-on-surface: #cccccc77;
+
+    --color-separator: #cccccc;
+
+    --color-primary: #b71c1c;
+    --color-on-primary: #fafafa;
+
+    --color-disabled: #222222aa;
+    --color-highlight: #4a4a4a;
+
+    --color-error: #ff6d00;
+    --color-success: #388e3c;
+
+    --color-snackbar: #202020;
+    --color-on-snackbar: #fafafa;
+
+    --text-color-primary: #323232;
+    --text-color-secondary: #454545;
+}
+
+
+/**** Dark Theme ****/
+
+@mixin darkTheme {
+    color: #fafafa;
+    --background-color: #181818;
+    --color-on-background: #55555540;
+
+    --color-surface: #252525;
+    --color-on-surface: #50505040;
+
+    --color-primary: #ff7575;
+    --color-on-primary: #2a2a2a;
+
+    --color-disabled: #ffffffb1;
+    --color-highlight: #b2b2b2;
+
+    --color-error: #ffab40;
+    --color-success: #66bb6a;
+
+    --color-snackbar: #fafafa;
+    --color-on-snackbar: #202020;
+
+    --text-color-primary: #fafafa;
+    --text-color-secondary: #ececec;
+}
+
+
+
+/**** Actually applying the theme ****/
+
+
+:root {
+    @include lightTheme()
+}
+
+
+:root.dark {
+    @include darkTheme()
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        @include darkTheme()
+    }
+}
