@@ -5,12 +5,14 @@
       class="mars-img"
       aria-hidden="true"
       alt=""
+      decoding="async"
     />
     <img
       src="@/assets/img/satellite.svg"
       class="mars-img2"
       aria-hidden="true"
       alt=""
+      decoding="async"
     />
     <icon-star class="star star-one" aria-hidden="true" alt="" />
     <icon-star class="star star-two" aria-hidden="true" alt="" />

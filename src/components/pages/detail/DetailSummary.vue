@@ -14,7 +14,12 @@
         </mars-chip>
       </li>
       <li>
-        <mars-chip type="button" :alternativeStyle="true" title="Share">
+        <mars-chip
+          type="button"
+          :alternativeStyle="true"
+          title="Share"
+          @click="$emit('share')"
+        >
           <icon-share aria-hidden="true" />
           Share
         </mars-chip>
@@ -23,15 +28,15 @@
     <ul class="property-data">
       <li title="Price">
         <icon-payment class="icon" aria-hidden="true" />
-        <div class="caption">{{ property?.price }} $</div>
+        <p class="caption">{{ property?.price }} $</p>
       </li>
       <li title="Total surface">
         <icon-surface-area class="icon" aria-hidden="true" />
-        <div class="caption">750 ha</div>
+        <p class="caption">{{ property?.surfaceArea }} ha</p>
       </li>
       <li title="Geographical position">
         <icon-position class="icon" aria-hidden="true" />
-        <div class="caption">58°W, 12°N</div>
+        <p class="caption">{{ Math.abs(property?.latitude ?? 0) }} {{ (property?.latitude ?? 0 ) > 0 ? "°N" : "°S" }} <br/> {{ property?.longitude }} °E</p>
       </li>
     </ul>
 
@@ -56,7 +61,7 @@ import { MarsProperty } from "@/assets/js/data/MarsProperty";
 
 export default defineComponent({
   name: "DetailSummary",
-  emits: ["addToFavorites"],
+  emits: ["addToFavorites", "share"],
   components: {
     IconPayment,
     IconSurfaceArea,

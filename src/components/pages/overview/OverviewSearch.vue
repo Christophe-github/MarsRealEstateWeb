@@ -49,31 +49,36 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.overview-search > label {
-  display: block;
-  margin-block-end: 0.5rem;
-  font-size: 1.2rem;
-}
-
-.overview-search > P {
-  font-weight: 500;
-  font-size: 0.9rem;
-  margin-block-start: 0.2rem;
-}
-
 .input-wrapper {
   position: relative;
+
+  /*************** 
+  
+    Basic input style
+
+  ****************/
 
   input {
     width: 100%;
     border-bottom: solid 0.12rem transparent;
+    padding-inline-end: 3rem; //end padding to give space to search button
   }
 
   //Here we are changing the default behavior of input:focus a bit :
   // we put no specific outline but a strong bottom border
   input:focus {
-    outline: solid 1px var(--color-separator);
+    outline: solid 1.5px var(--color-separator);
     border-bottom: solid 0.12rem var(--color-primary);
+  }
+
+  /*************** 
+  
+    Button with the search icon
+
+  ****************/
+
+  input:focus + button {
+    color: var(--color-primary);
   }
 
   input:invalid:not(:focus):not(:placeholder-shown) + button {
@@ -98,5 +103,17 @@ export default {
     width: 1.2rem;
     height: 1.25rem;
   }
+}
+
+  /*************** 
+  
+    Description of the input
+
+  ****************/
+
+.overview-search > p {
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-block-start: 0.3rem;
 }
 </style>

@@ -6,7 +6,11 @@
       </div>
     </div>
 
-    <detail-summary :property="property" @addToFavorites="addToFavorites()" />
+    <detail-summary
+      :property="property"
+      @addToFavorites="addToFavorites()"
+      @share="share()"
+    />
 
     <div class="detail-page-image-secondary">
       <div class="aspect-ratio-wrapper">
@@ -62,6 +66,14 @@ export default defineComponent({
       marsRepository.addToFavorites(this.propertyId);
       this.showSnackBar(`Property ${this.propertyId} added to favorites`);
     },
+    share() {
+      try {
+        navigator.share({ url: location.href });
+      } catch (e) {
+        this.showSnackBar(`Your navigator does not support sharing`);
+        console.log(e);
+      }
+    },
     showSnackBar(message: string) {
       (this.$root as unknown as typeof App).showSnackBar(message);
     },
@@ -79,92 +91,115 @@ $width-small: 31rem;
 $width-large: 52rem;
 
 .detail-page {
-  margin: 0 auto;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
 }
 
-.detail-page img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+@mixin image-shadow {
+  border-radius: 5px;
+  box-shadow: 0 0 4px #22222288;
 }
 
-/** Positioning and sizing elements on small screens */
+/*********************
+
+  SMALL SCREENS
+  Positioning and sizing elements 
+
+********************/
 @include mixins.ifSmallerThan($width-large) {
   .detail-page {
     display: grid;
-    grid-template-rows: 250px auto 250px auto;
+    grid-template-rows: 250px auto auto auto;
     justify-items: center;
     grid-gap: 2rem;
   }
 
-  .detail-page > :first-child {
+  /**
+  
+  On small screens, we do not want the first image to have a 16:9 aspect ratio,
+  but instead we want to put it as a hero image / banner
+
+  */
+  .detail-page-image-main .aspect-ratio-wrapper {
+    padding: 0;
+    height: 100%;
     width: 100%;
   }
 
-  .detail-page > :nth-child(n + 2) {
+  .detail-page > .detail-page-image-main {
+    width: 100%;
+  }
+
+  .detail-page > :not(.detail-page-image-main) {
     width: 90%;
   }
 }
 
-/** Positioning and sizing the elements on large screens */
+/*********************
 
+  LARGE SCREENS
+  Positioning and sizing elements 
+
+********************/
 @include mixins.ifBiggerThan($width-large) {
   .detail-page {
-    margin-inline: 2rem;
-    grid-gap: 1rem;
     display: grid;
     grid-template-areas:
       "a a b"
       "c d d";
     // grid-template-rows: repeat(2, 25rem);
-    // grid-template-rows: repeat(2, 25rem);
     grid-template-columns: 1fr 1fr 1fr;
+    margin-inline: 2rem;
+    grid-gap: 1rem;
   }
 
   .detail-page > * {
     padding: 1rem;
   }
 
-  .detail-page > :nth-child(1) {
+  .detail-page > .detail-page-image-main {
     grid-area: a;
   }
 
-  .detail-page > :nth-child(2) {
+  .detail-page > .detail-summary {
     grid-area: b;
   }
 
-  .detail-page > :nth-child(3) {
+  .detail-page > .detail-page-image-secondary {
     grid-area: d;
   }
 
-  .detail-page > :nth-child(4) {
+  .detail-page > .detail-more-infos {
     grid-area: c;
   }
 }
 
-/***********  First image box ***********/
+/***********  
+
+First image box 
+
+***********/
 .detail-page-image-main {
   display: flex;
   align-items: center;
 }
 
-
-
+/** We dont't want to put a shadow and border radius when the image is displayed as
+a hero / banner */
 .detail-page-image-main img {
   @include mixins.ifBiggerThan($width-large) {
-    border-radius: 5px;
-    box-shadow: 0 0 4px #22222288;
+    @include image-shadow();
   }
 }
 
-/********* Second image box *************/
+/********* 
 
+Second image box 
+
+*************/
 .detail-page-image-secondary {
   display: flex;
-  align-items:center;
+  align-items: center;
 }
-
 
 .image-secondary-grid {
   display: grid;
@@ -174,8 +209,7 @@ $width-large: 52rem;
 }
 
 .image-secondary-grid img {
-  border-radius: 5px;
-  box-shadow: 0 0 4px #22222288;
+  @include image-shadow();
 }
 
 .image-secondary-grid :first-child {
@@ -186,6 +220,7 @@ $width-large: 52rem;
 .image-secondary-grid :nth-child(2) {
   grid-row: 1;
   grid-column: 2;
+  transform: rotateY(180deg);
 }
 .image-secondary-grid :nth-child(3) {
   grid-row: 2;

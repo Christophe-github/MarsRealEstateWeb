@@ -1,0 +1,54 @@
+/*************
+
+    STATIC fonts are still a good choice if only a few font style are used because they weight 
+    much less than variable fonts
+
+    (Static) Regular + Semibold ~= 40 kB
+    Variable ~= 120 kB
+
+    Also serving fonts locally and not via googlefonts allow us to preload the font to avoid FOUT
+
+**************/
+
+@font-face {
+    font-family: Raleway;
+    font-weight: 400;
+    font-style: normal;
+    font-display: auto;
+    unicode-range: U+000-5FF;
+    src: local("Raleway Regular"), url("/fonts/Raleway/static/Raleway-Regular.woff2") format("woff2");
+
+}
+
+@font-face {
+    font-family: Raleway;
+    font-weight: 600;
+    font-style: normal;
+    font-display: auto;
+    unicode-range: U+000-5FF;
+    src: local("Raleway SemiBold"), url("/fonts/Raleway/static/Raleway-SemiBold.woff2") format("woff2");
+
+}
+
+
+
+/*************
+
+    VARIABLE fonts
+    Since only two font style are used (regular and semi bold), it is not worth it to
+    use the variable font as it is much heavier
+
+**************/
+/* @supports (font-variation-settings: normal) {
+
+    @font-face {
+        font-family: Raleway;
+        font-weight: 100 1000;
+        font-display: auto;
+        unicode-range: U+000-5FF;
+        src: local("Raleway Flex"),
+            url("/fonts/Raleway/Raleway-VariableFont_wght.woff2") format("truetype-variations");
+
+    }
+
+} */

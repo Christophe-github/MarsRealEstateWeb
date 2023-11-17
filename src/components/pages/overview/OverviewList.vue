@@ -72,6 +72,10 @@
       </li>
     </ul>
 
+    <span v-show="properties.length == 0" class="no-property-found"
+      >No property found
+    </span>
+
     <transition name="transition-overlay-loading">
       <div v-show="loading" class="overlay-loading">
         <div
@@ -82,9 +86,7 @@
       </div>
     </transition>
 
-    <span v-show="properties.length == 0" class="no-property-found"
-      >No property found
-    </span>
+    
   </div>
 </template>
 
@@ -165,16 +167,6 @@ export default defineComponent({
 
 $smaller-width: 22rem;
 
-.no-property-found {
-  position: absolute;
-  top: 2.4rem;
-  left: 0;
-  right: 0;
-  margin: auto;
-  text-align: center;
-
-  font-size: 1.5rem;
-}
 
 .list-property {
   padding: 0;
@@ -193,7 +185,8 @@ $smaller-width: 22rem;
 
 /******************
 
-  Body of cards
+  Body of cards,
+  Image section with title
 
 *******************/
 
@@ -249,7 +242,8 @@ $smaller-width: 22rem;
 
 /******************
 
-  Body of cards, overflow menu with three dots
+  Body of cards, 
+  overflow menu with three dots
 
 *******************/
 
@@ -274,7 +268,7 @@ $smaller-width: 22rem;
 
 /******************
 
-  Body of cards
+  Body of cards,
   Top bar for card to display a button for removal
   This part is only shown when FAVORITES are shown
 
@@ -283,7 +277,7 @@ $smaller-width: 22rem;
 .list-property-item .shadow-up {
   position: absolute;
   top: 0;
-  width: 101%;
+  width: 100%;
   height: 70px;
   background: linear-gradient(
     0deg,
@@ -304,6 +298,7 @@ $smaller-width: 22rem;
 
 /******************
 
+  Body of cards,
   Card footer
 
 *******************/
@@ -357,24 +352,42 @@ $smaller-width: 22rem;
 
 /******************
 
-  Loading overlay
+  General loading overlay
 
 *******************/
 
 .overlay-loading {
+  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   background-color: var(--background-color);
-  position: absolute;
+  
 }
 
 .loading {
   margin: auto;
-  margin-top: 7rem;
+  margin-top: 1rem;
   width: 2.5rem;
   height: 2.5rem;
   font-size: 1rem; /* Set the width of the arc spinning */
+}
+
+
+/*********** 
+
+  Message when no properties are found
+
+**************/
+.no-property-found {
+  position: absolute;
+  top: 2.4rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+
+  font-size: 1.5rem;
 }
 </style>

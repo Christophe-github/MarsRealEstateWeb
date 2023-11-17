@@ -60,12 +60,19 @@ export default {
   flex: 1;
 }
 
+/*******
+
+  Bottom close button
+
+*********/
 .footer {
+  position: relative;
   display: flex;
   align-items: center;
   padding: 15px;
   background-color: transparent;
   border: none;
+  color: var(--text-color-primary);
   background-color: var(--color-on-background);
 }
 
@@ -75,10 +82,6 @@ export default {
   font-size: 1rem;
 }
 
-.footer {
-  position: relative;
-  color: var(--text-color-primary);
-}
 
 .footer:hover {
   @include mixins.apply-above-background(var(--color-on-background));

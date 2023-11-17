@@ -1,6 +1,7 @@
-@use "@/assets/css/widgets.scss";
-
+@use "@/assets/css/widgets";
 @use "@/assets/css/themes";
+
+@import url("~@/assets/css/fonts.css");
 
 html {
     overflow-y: scroll;
@@ -13,9 +14,7 @@ html {
 body {
     margin: 0;
     background-color: var(--background-color);
-    /* font-family: Avenir, Helvetica, Arial, sans-serif; */
     font-family: Raleway;
-    font-display: swap;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -23,37 +22,32 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
+}
 
 h1,
 h2,
 h3,
 h4,
-h5,
-p {
+h5 {
     margin: 0;
+    color: var(--text-color-primary);
+    font-weight: 600;
 }
-
 
 h1 {
     font-size: 2.4rem;
-    color: var(--text-color-primary);
 }
-
 
 h2 {
     font-size: 1.8rem;
-    color: var(--text-color-primary);
 }
 
 h3 {
     font-size: 1.6rem;
-    color: var(--text-color-primary);
 }
 
 h4 {
     font-size: 1.2rem;
-    color: var(--text-color-primary);
 }
 
 a {
@@ -64,6 +58,10 @@ a {
 a:focus {
     /* outline: none; */
     // text-decoration: underline;
+}
+
+p {
+    margin: 0;
 }
 
 button {
@@ -83,6 +81,7 @@ fieldset {
     border: none;
 }
 
+label,
 fieldset > legend {
     display: block;
     margin-block-end: 0.5rem;
@@ -99,11 +98,10 @@ select {
     border: none;
     color: var(--text-color-primary);
     background-color: var(--color-surface);
-    outline: solid 1px var(--color-separator);
+    outline: solid 1.5px var(--color-separator);
 
     appearance: none;
 }
-
 
 select > option {
     font-family: sans-serif;
@@ -119,7 +117,7 @@ input {
     font-family: Raleway;
     font-weight: 600;
     font-size: 1.1rem;
-    outline: solid 1px var(--color-separator);
+    outline: solid 1.5px var(--color-separator);
     border: none;
     border-radius: 5px;
     color: var(--text-color-primary);
@@ -143,7 +141,7 @@ input::placeholder {
     opacity: 0.9;
     text-overflow: ellipsis;
     font-family: Raleway;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 input:disabled {

@@ -19,7 +19,7 @@
           name="email"
           type="email"
           autocomplete="email"
-          placeholder=""
+          placeholder="user@example.com"
           v-model="email"
           required
           :disabled="$store.state.loggedIn"
@@ -32,7 +32,7 @@
           id="login-password"
           type="password"
           autocomplete="current-password"
-          placeholder=""
+          placeholder="********"
           pattern="((?=.*\d)(?=.*[\W]).{8,})"
           minlength="8"
           v-model="password"
@@ -71,7 +71,7 @@
 
     <transition name="fade" >
       <form class="logout-card" v-show="$store.state.loggedIn" aria-label="Logout form">
-        <h2>Logout</h2>
+        <h3>Login succesful</h3>
         <span class="logged-in-message"
           >You are logged in as
           <strong>
@@ -180,42 +180,43 @@ export default defineComponent({
 
 
 
-/************************ */
-/*******  Login card ******/
+/******************  
+
+    Login / Logout cards
+
+****************/
 
 .login-card,
 .logout-card {
+  position: relative;
   width: 100%;
   max-width: 24rem;
 
   padding: 2rem 2.5rem;
   margin: 2rem auto;
-  *min-height: 24rem;
-
-  position: relative;
-  box-sizing: border-box;
 
   display: flex;
   flex-direction: column;
-
+  
+  box-sizing: border-box;
   border-radius: 5px;
   box-shadow: 0 0 8px #88747488;
   background-color: var(--color-surface);
 }
 
+
+
+
 .login-card > * {
-  //If clamp is not supported, there are workarounds
   width: 100%;
   box-sizing: border-box;
 }
 
 .login-card > h1,
-.logout-card > h2 {
+.logout-card > h3 {
   margin-bottom: 1.5rem;
   text-align: center;
   color: var(--color-primary);
-   
-  
 }
 
 .login-button,
@@ -228,11 +229,16 @@ export default defineComponent({
 }
 
 .login-card > span {
-  margin-top: 0.3rem;
+  margin-top: 0.4rem;
   margin-bottom: 0.6rem;
   font-size: 0.9rem;
 }
 
+/******************  
+
+    Loading elements
+
+****************/
 .login-scrim {
   position: absolute;
   top: 0;
@@ -253,6 +259,12 @@ export default defineComponent({
   transition: opacity 100ms;
 }
 
+
+/******************  
+
+    Logout only
+
+****************/
 .logout-card {
   position: absolute;
   align-self: center;
@@ -267,7 +279,11 @@ export default defineComponent({
   word-break: break-word;
 }
 
-/******** Transitions *********/
+/******** 
+
+  Transitions 
+
+*********/
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;

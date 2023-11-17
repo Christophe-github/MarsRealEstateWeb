@@ -15,12 +15,13 @@ const routes = [
     { path: '/settings', name: "Settings", component: SettingsPage },
     { path: '/detail/:propertyId', name: "Detail", component: DetailPage, props: true },
     { path: "/notfound", name: "NotFound", component: NotFound },
-    { path: "/:catchAll(.*)", component: NotFound },
+    { path: "/:catchAll(.*)", redirect : "/notfound" },
 ]
 
 
 const router = createRouter({
     history: createWebHistory(),
+    
     routes,
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {

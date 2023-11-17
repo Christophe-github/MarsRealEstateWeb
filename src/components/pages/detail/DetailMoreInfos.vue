@@ -9,7 +9,7 @@
     </p>
     <div class="available-since list-tile">
       <icon-date class="icon"></icon-date>
-      <p>This property is available since <strong> 20/09/2021</strong></p>
+      <p>This property has been put to sale recently</p>
     </div>
     <div class="have-seen list-tile">
       <icon-people class="icon"></icon-people>
@@ -38,13 +38,6 @@ export default defineComponent({
   flex-direction: column;
 }
 
-.available-since {
-  padding-bottom: 1rem;
-  border-bottom: solid 1px var(--color-on-background);
-  margin-bottom: 1rem;
-  margin-top: 1rem;
-}
-
 .detail-more-infos > p {
   margin-top: 1rem;
   flex: 1;
@@ -52,6 +45,19 @@ export default defineComponent({
   text-align: justify;
   line-height: 1.5;
   overflow-y: auto;
+}
+
+/****** 
+
+  Area below the description
+
+********/
+
+.available-since {
+  padding-bottom: 1rem;
+  border-bottom: solid 1px var(--color-on-background);
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .detail-more-infos .icon {

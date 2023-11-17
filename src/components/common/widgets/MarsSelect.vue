@@ -43,7 +43,7 @@ export default {
 
     color: var(--text-color-primary);
 
-    pointer-events: none;
+    pointer-events: none; //make it possible to click through the icon to reach the select
   }
 }
 </style>

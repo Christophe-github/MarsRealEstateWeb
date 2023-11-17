@@ -14,7 +14,12 @@ const properties = Array.from(Array(1_000), (_, i) => {
     let price = Math.floor(100_000 + Math.random() * 300_000);
     if (type === MarsProperty.Type.Rent) price = Math.floor(price / 10);
 
-    return new MarsProperty(id, imgSrcUrl, type, price, description, 0, 0, 0);
+    const surfaceArea = Math.floor(10 + Math.random() * 990);
+
+    const latitude = Math.floor(Math.random() * 360 - 180 );
+    const longitude = Math.floor(Math.random() * 360);
+
+    return new MarsProperty(id, imgSrcUrl, type, price, description, surfaceArea, latitude, longitude);
 })
 
 

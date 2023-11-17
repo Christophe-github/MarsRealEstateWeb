@@ -5,15 +5,15 @@
     role="navigation"
   >
     <ul>
-      <li class="ripple" :class="{ active: currentPage == 'Login' }" >
-        <router-link :to="{ name: 'Login' }" aria-label="Login" >
+      <li class="ripple" :class="{ active: currentPage == 'Login' }">
+        <router-link :to="{ name: 'Login' }" aria-label="Login">
           <icon-login class="icon" aria-hidden="true" role="img" />
           <h5>Login</h5>
         </router-link>
       </li>
 
-      <li class="ripple" :class="{ active: currentPage == 'Overview' }" >
-        <router-link :to="{ name: 'Overview' }" aria-label="Browse" >
+      <li class="ripple" :class="{ active: currentPage == 'Overview' }">
+        <router-link :to="{ name: 'Overview' }" aria-label="Browse">
           <icon-mars class="icon" aria-hidden="true" role="img" />
           <h5>Browse</h5>
         </router-link>
@@ -47,7 +47,7 @@ import IconCart from "@/components/icons/IconCart.vue";
 import IconMars from "@/components/icons/IconMars.vue";
 import IconFavorites from "@/components/icons/IconFavorites.vue";
 import IconSettings from "@/components/icons/IconSettings.vue";
-import IconLogin from '@/components/icons/IconLogin.vue';
+import IconLogin from "@/components/icons/IconLogin.vue";
 
 export default {
   name: "NavigationMenu",
@@ -72,8 +72,6 @@ export default {
       this.currentPage = newRoute.name;
     },
   },
-
- 
 };
 </script>
 
@@ -81,18 +79,19 @@ export default {
 <style lang="scss" scoped>
 @use "@/assets/css/mixins.scss";
 
-/**Style for horizontal alignment */
+/************
+
+  Style for horizontal alignment 
+
+*************/
 .navigation-rail.horizontal ul {
   display: flex;
-  align-items: center;
   height: 100%;
 }
 
 .navigation-rail.horizontal li {
-  // width: 100px;
-  width:6rem;
+  width: 6rem;
   height: 100%;
-  
 }
 
 .navigation-rail.horizontal a {
@@ -103,7 +102,11 @@ export default {
   justify-content: center;
 }
 
-/**Style for vertical alignment */
+/***************
+
+  Style for vertical alignment 
+
+*****************/
 .navigation-rail.vertical ul {
   width: 100%;
   display: flex;
@@ -115,7 +118,7 @@ export default {
 }
 
 .navigation-rail.vertical li:last-child {
-  border-top:solid 1.5px var(--color-separator);
+  border-top: solid 1.5px var(--color-separator);
 }
 
 .navigation-rail.vertical a {
@@ -126,20 +129,22 @@ export default {
   justify-content: flex-start;
 }
 
-/** Common styles */
-.navigation-rail li {
-  position: relative;
+.navigation-rail.vertical .icon {
+  margin-inline-end: 1rem;
 }
 
-.navigation-rail.vertical a :first-child {
-  margin-right: 1rem;
-}
+/*********** 
 
-.navigation-rail li.active a {
+  Common styles 
+
+***********/
+
+.navigation-rail li.active svg,
+.navigation-rail li.active h5 {
   color: var(--color-primary);
 }
 
-.navigation-rail li:not(.active) a {
+.navigation-rail li:not(.active) svg {
   color: var(--color-disabled);
 }
 
@@ -149,10 +154,14 @@ export default {
 }
 
 .navigation-rail li h5 {
-  margin: 0;
   margin-top: 4px;
   font-size: 1rem;
   font-weight: 500;
+}
+
+//Since we apply a color above the div in the next rule, we must set this property
+.navigation-rail li{
+  z-index: 0;
 }
 
 .navigation-rail li:focus-within,

@@ -22,7 +22,6 @@
             :checked="type === 'all'"
             type="radio"
             group="type"
-           
           >
             All
           </mars-chip>
@@ -31,7 +30,6 @@
             :checked="type === 'rent'"
             type="radio"
             group="type"
-            
           >
             To rent
           </mars-chip>
@@ -40,7 +38,6 @@
             :checked="type === 'buy'"
             type="radio"
             group="type"
-           
           >
             To buy
           </mars-chip>
@@ -74,7 +71,6 @@
       @pageSelected="updatePage($event)"
     />
   </div>
-  
 </template>
 
 <script lang="ts">
@@ -83,7 +79,7 @@ import { MarsAPIQuery } from "@/assets/js/data/MarsAPIQuery";
 import marsRepository from "@/assets/js/services/MarsRepository";
 import { delay } from "@/assets/js/utils";
 
-import App from "@/App.vue"
+import App from "@/App.vue";
 
 import MarsChip from "@/components/common/widgets/MarsChip.vue";
 import MarsSelect from "@/components/common/widgets/MarsSelect.vue";
@@ -116,22 +112,22 @@ export default defineComponent({
   },
   watch: {
     filter: function () {
-      this.newQuery();
+      this.resetPageAndUpdateQuery();
     },
     type: function () {
-      this.newQuery();
+      this.resetPageAndUpdateQuery();
     },
     sortBy: function () {
-      this.newQuery();
+     this.resetPageAndUpdateQuery();
     },
   },
   methods: {
     async updatePage(pageNumber: number) {
       await delay(400);
-      this.newQuery(pageNumber);
-    },
-    newQuery(pageNumber = 1) {
       this.currentPage = pageNumber;
+      this.updateQuery();
+    },
+    updateQuery() {
       this.query = new MarsAPIQuery(
         this.filter,
         this.type,
@@ -139,15 +135,20 @@ export default defineComponent({
         this.currentPage
       );
     },
+    resetPageAndUpdateQuery() {
+      this.currentPage = 1;
+      this.updateQuery()
+    },
     clearFavorites() {
       marsRepository.clearFavorites();
-      this.newQuery(); //To reload the list
-      (this.$root as unknown as typeof App).showSnackBar(`All favorites removed`);
-   
+      this.resetPageAndUpdateQuery(); //To reload the list
+      (this.$root as unknown as typeof App).showSnackBar(
+        `All favorites removed`
+      );
     },
   },
   mounted() {
-    this.newQuery(this.currentPage);
+    this.resetPageAndUpdateQuery();
   },
 });
 </script>
@@ -155,7 +156,11 @@ export default defineComponent({
 <style lang="scss" scoped>
 @use "@/assets/css/mixins.scss";
 
-/****** Search and filter form *****/
+/************ 
+
+  Search and filter form 
+
+************/
 .overview-page > .search-container {
   width: clamp(10rem, 70%, 70ch);
   margin: 2rem auto 0.5rem auto;
@@ -167,13 +172,12 @@ export default defineComponent({
   justify-content: space-between;
   margin-block-end: 1.8rem;
   align-items: baseline;
-  column-gap:2rem;
-}
-.search-container  h2 {
-  margin-block-end: 1rem;
-  
+  column-gap: 2rem;
 }
 
+.search-container h2 {
+  margin-block-end: 1rem;
+}
 
 .search-bar-second-line {
   display: flex;
@@ -181,7 +185,11 @@ export default defineComponent({
   align-items: center;
   margin-block-start: 1.2rem;
 
-  /***** Filter group *****/
+  /*********** 
+  
+    Filter by type group 
+  
+  ***********/
   .filter-type-group {
     margin-right: 1rem;
     display: flex;
@@ -191,7 +199,11 @@ export default defineComponent({
     margin-right: 0.6rem;
   }
 
-  /***** Sorting control *****/
+  /************** 
+
+    Sorting control 
+  
+  *************/
   .sorting-container {
     display: flex;
     flex-direction: column;
@@ -206,6 +218,12 @@ export default defineComponent({
   }
 }
 
+
+  /************** 
+
+    Bottom pagination 
+  
+  *************/
 .pagination-bar {
   margin: 3rem;
 }

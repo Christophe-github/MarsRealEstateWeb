@@ -58,17 +58,33 @@ export default {
 
 .mars-chip {
   position: relative;
-  // display: inline-flex;
   cursor: pointer;
-  // padding:  0.75rem;
-  padding-block: 0.5rem;
-  padding-inline-start: 0;
-  padding-inline-end: 0.75rem;
   border-radius: 1.25rem;
   font-size: 0.8rem;
   white-space: nowrap;
   color: var(--text-color-primary);
 }
+
+/***********
+
+We can't use display : flex to center elements in a label chip because
+the screen readers would not recognize the association between the radio
+input and the text label
+
+*************/
+label.mars-chip {
+  padding-block: 0.5rem;
+  padding-inline-start: 0;
+  padding-inline-end: 0.75rem;
+}
+
+
+.mars-chip:not(label) {
+  padding-block: 0.5rem;
+  padding-inline: 0.75rem;
+  display: flex;
+}
+
 
 .mars-chip:not(.alternative) {
   /* background-color: var(--color-on-background); */

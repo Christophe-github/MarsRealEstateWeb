@@ -15,7 +15,7 @@
       class="button-mars"
       ref="button-mars"
     >
-      <img src="@/assets/img/mars.svg" />
+      <img src="@/assets/img/mars.svg" decoding="async"/>
     </button>
     <button class="skip-links" @click="$emit('skipLinks')">Skip links</button>
 
@@ -52,14 +52,12 @@ export default {
 
 // $widthMinForMenu: 850px;
 $widthMinForMenu: 50rem;
-// $widthMinForMenu : 100ch;
 
 .mars-header {
-  //box-shadow: 0 0 4px #22222288;
   border-bottom: solid 1px var(--color-separator);
   background-color: var(--color-surface);
   transition: background-color 0.3s;
-  padding-left: 16px;
+  padding-inline-start: 16px;
   display: flex;
   align-items: center;
 
@@ -74,48 +72,64 @@ $widthMinForMenu: 50rem;
     color: var(--color-primary);
   }
 
+  /*********
+
+    Hamburger icon, only displayed on small screens
+  
+  **********/
+
   .button-menu {
     @include ifBiggerThan($widthMinForMenu) {
       display: none;
     }
   }
 
-  .button-mars {
-    @include ifSmallerThan($widthMinForMenu) {
-      display: none;
-    }
-
-    &:focus {
-       outline: 1px dotted;
-    }
-
-    &:focus-visible {
-      outline: 1px dotted;
-    }
-
-    
-  }
-
-  .button-menu > :first-child {
+  .button-menu > svg {
     color: var(--color-primary);
     height: 2rem;
     width: 2rem;
   }
 
-  .button-mars > :first-child {
+  /*********
+
+    Mars icon, only showed on big screens
+  
+  **********/
+  .button-mars {
+    @include ifSmallerThan($widthMinForMenu) {
+      display: none;
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: 1px dotted;
+    }
+  }
+
+  .button-mars > img {
     width: 2.3rem;
   }
 
+  /********** 
+  
+    Navigation menu, only showed in horizontal mode if there is enough space
+  
+  **********/
+
   .navigation-menu {
     height: 100%;
-    z-index: 0;
 
     @include ifSmallerThan($widthMinForMenu) {
       display: none;
     }
   }
 
-  /******* Skip links button for accessibility ********/
+  /*********** 
+  
+    Skip links button for accessibility 
+  
+  ************/
+
   .skip-links {
     position: absolute;
     left: 5rem;

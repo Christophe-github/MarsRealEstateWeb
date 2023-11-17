@@ -1,6 +1,6 @@
 <template>
   <ul class="overview-pagination-bar-list">
-    <li v-if="currentPage > 3">
+    <li v-if="currentPage > 4">
       <a
         :href="scrollAnchorOnPageSelected"
         @click="pageSelected(1)"
@@ -15,7 +15,7 @@
         <a
           :href="scrollAnchorOnPageSelected"
           @click="pageSelected(page)"
-          :aria-label="'Page ' + page"
+          :aria-label="`Page ${page}`"
           >{{ page }}</a
         >
       </li>
@@ -56,6 +56,11 @@ export default {
     };
   },
   computed: {
+    /** Returns an array of approximately 7 integers centered around the current page 
+     * For example with currentpage = n: [n-2,n-1,n,n+1,n+2,n+3]
+     * Never returns elements that are negative, zero, or above the total number of page 
+     * 
+    */
     pageSuggestionsLinks() {
       return Array.from(Array(this.pageSuggestionsCount), (_, i) => i + this.currentPage )
         .map((n) => n - 3)
@@ -70,7 +75,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .overview-pagination-bar-list {
   display: flex;
@@ -80,7 +84,6 @@ export default {
 
 .overview-pagination-bar-list li {
   margin-right: 0.7rem;
-  /* background-color: var(--color-on-background); */
   user-select: none;
   -webkit-user-select: none;
   display: flex;

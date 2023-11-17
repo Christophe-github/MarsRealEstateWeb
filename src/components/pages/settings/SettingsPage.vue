@@ -59,7 +59,11 @@ export default {
 <style lang="scss" scoped>
 @use "@/assets/css/mixins.scss";
 
-/****** Settings card ******/
+/****** 
+
+  Settings card 
+
+******/
 
 .settings-card {
   background-color: var(--color-surface);
@@ -116,7 +120,7 @@ export default {
   color: var(--color-primary);
 }
 
-.settings-card > label > :nth-child(2) {
+.settings-card > label > span {
   flex: 1;
   font-weight: 500;
 }
